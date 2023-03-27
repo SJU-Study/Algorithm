@@ -15,7 +15,7 @@ public class Main {
     static int n, k, l;
     static int[][] board;
     static List<Dir> list = new ArrayList<>();
-    static List<int[]> snake = new ArrayList<>();
+    static Deque<int[]> snake = new ArrayDeque<>();
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -37,75 +37,63 @@ public class Main {
 
         int time = 0;
         char dir = '0';
-        int tail = 0;
-        int head = 0;
         boolean finish = false;
         snake.add(new int[]{1, 1});
         while (true) {
             time++;
-            int x, y;
+            int[] head = snake.getFirst();
+            int y = head[0];
+            int x = head[1];
             switch (dir) {
                 case '0': // 오른쪽
-                    y = snake.get(head)[0];
-                    x = snake.get(head)[1] + 1;
+                    x++;
 
                     if (x > n || board[y][x] == 1) {
                         finish = true;
                         break;
                     }
-                    snake.add(new int[]{y, x});
-                    head++;
+                    snake.addFirst(new int[]{y, x});
                     if (board[y][x] != -1) {
-                        removeTail(tail);
-                        head--;
+                        removeTail(snake.getLast());
                     }
                     board[y][x] = 1;
                     break;
                 case '1': // 아래쪽
-                    y = snake.get(head)[0] + 1;
-                    x = snake.get(head)[1];
+                    y++;
 
                     if (y > n || board[y][x] == 1) {
                         finish = true;
                         break;
                     }
-                    snake.add(new int[]{y, x});
-                    head++;
+                    snake.addFirst(new int[]{y, x});
                     if (board[y][x] != -1) {
-                        removeTail(tail);
-                        head--;
+                        removeTail(snake.getLast());
                     }
                     board[y][x] = 1;
                     break;
                 case '2': // 왼쪽
-                    y = snake.get(head)[0];
-                    x = snake.get(head)[1] - 1;
+                    x--;
 
                     if (x < 1 || board[y][x] == 1) {
                         finish = true;
                         break;
                     }
-                    snake.add(new int[]{y, x});
-                    head++;
+                    snake.addFirst(new int[]{y, x});
                     if (board[y][x] != -1) {
-                        removeTail(tail);
-                        head--;
+                        removeTail(snake.getLast());
                     }
                     board[y][x] = 1;
                     break;
                 case '3': // 위쪽
-                    y = snake.get(head)[0] - 1;
-                    x = snake.get(head)[1];
+                    y--;
 
                     if (y < 1 || board[y][x] == 1) {
                         finish = true;
                         break;
                     }
-                    snake.add(new int[]{y, x});
-                    head++;
+                    snake.addFirst(new int[]{y, x});
                     if (board[y][x] != -1) {
-                        removeTail(tail);
-                        head--;
+                        removeTail(snake.getLast());
                     }
                     board[y][x] = 1;
                     break;
@@ -152,8 +140,8 @@ public class Main {
         return dir;
     }
 
-    private static void removeTail(int tail) {
-        board[snake.get(tail)[0]][snake.get(tail)[1]] = 0;
-        snake.remove(tail);
+    private static void removeTail(int[] tail) {
+        board[tail[0]][tail[1]] = 0;
+        snake.removeLast();
     }
 }
