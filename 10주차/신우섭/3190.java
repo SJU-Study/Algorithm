@@ -37,7 +37,6 @@ public class Main {
 
         int time = 0;
         char dir = '0';
-        boolean finish = false;
         snake.add(new int[]{1, 1});
         while (true) {
             time++;
@@ -47,58 +46,18 @@ public class Main {
             switch (dir) {
                 case '0': // 오른쪽
                     x++;
-
-                    if (x > n || board[y][x] == 1) {
-                        finish = true;
-                        break;
-                    }
-                    snake.addFirst(new int[]{y, x});
-                    if (board[y][x] != -1) {
-                        removeTail(snake.getLast());
-                    }
-                    board[y][x] = 1;
                     break;
                 case '1': // 아래쪽
                     y++;
-
-                    if (y > n || board[y][x] == 1) {
-                        finish = true;
-                        break;
-                    }
-                    snake.addFirst(new int[]{y, x});
-                    if (board[y][x] != -1) {
-                        removeTail(snake.getLast());
-                    }
-                    board[y][x] = 1;
                     break;
                 case '2': // 왼쪽
                     x--;
-
-                    if (x < 1 || board[y][x] == 1) {
-                        finish = true;
-                        break;
-                    }
-                    snake.addFirst(new int[]{y, x});
-                    if (board[y][x] != -1) {
-                        removeTail(snake.getLast());
-                    }
-                    board[y][x] = 1;
                     break;
                 case '3': // 위쪽
                     y--;
-
-                    if (y < 1 || board[y][x] == 1) {
-                        finish = true;
-                        break;
-                    }
-                    snake.addFirst(new int[]{y, x});
-                    if (board[y][x] != -1) {
-                        removeTail(snake.getLast());
-                    }
-                    board[y][x] = 1;
                     break;
             }
-            if (finish) {
+            if (checkFinish(y, x)) {
                 break;
             }
             dir = changeDir(dir, time);
@@ -106,6 +65,18 @@ public class Main {
 
         System.out.println(time);
         br.close();
+    }
+
+    private static boolean checkFinish(int y, int x) {
+        if (x < 1 || y < 1 || x > n || y > n || board[y][x] == 1) {
+            return true;
+        }
+        snake.addFirst(new int[]{y, x});
+        if (board[y][x] != -1) {
+            removeTail(snake.getLast());
+        }
+        board[y][x] = 1;
+        return false;
     }
 
     private static char changeDir(char dir, int time) {
