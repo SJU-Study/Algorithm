@@ -2,4 +2,4 @@
 
 ### 8주차 - 분할 정복
 
-https://www.acmicpc.net/workbook/view/7275
+https://www.acmicpc.net/workbook/view/15055
