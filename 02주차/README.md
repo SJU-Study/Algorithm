@@ -2,4 +2,4 @@
 
 ### 2주차 - 자료구조
 
-https://www.acmicpc.net/workbook/view/8999
+https://www.acmicpc.net/workbook/view/15060
