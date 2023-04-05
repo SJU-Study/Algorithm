@@ -2,4 +2,4 @@
 
 ### 7주차 - 이분탐색
 
-https://www.acmicpc.net/workbook/view/7277
+https://www.acmicpc.net/workbook/view/15056
