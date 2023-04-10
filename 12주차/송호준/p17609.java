@@ -112,10 +112,6 @@ public class Main {
             left--;
             right++;
         }
-        if (left >= 0 || right < len) {
-            flag = 2;
-            return;
-        }
         flag = 0;
     }
 }
