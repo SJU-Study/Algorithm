@@ -1,8 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Main {
 
@@ -15,38 +13,26 @@ public class Main {
         }
         int eachLength = input.length() / 4;
 
-        Set<String> set = new HashSet<>();
+        String[] d = new String[4];
+        for (int i = 0; i < 4; i++) {
+            d[i] = "";
+        }
         for (int i = 0; i < eachLength; i++) {
             if (input.length() == 0) {
                 break;
             }
-            String str = "";
-            for (int j = 0; j <= i; j++) {
-                str += 'w';
-            }
-            for (int j = 0; j <= i; j++) {
-                str += 'o';
-            }
-            for (int j = 0; j <= i; j++) {
-                str += 'l';
-            }
-            for (int j = 0; j <= i; j++) {
-                str += 'f';
-            }
-            set.add(str);
-        }
+            d[0] += 'w';
+            d[1] += 'o';
+            d[2] += 'l';
+            d[3] += 'f';
 
-        boolean isRight = true;
-        int start = 0;
-        for (int i = 3; i < input.length(); i += 4) {
-            if (set.contains(input.substring(start, i + 1))) {
-                start = i + 1;
-                isRight=true;
-            } else {
-                isRight = false;
+            String str = d[0] + d[1] + d[2] + d[3];
+            while (input.contains(str)) {
+                input = input.replace(str, "*");
             }
         }
-        if (isRight) {
+        input = input.replaceAll("[*]", "");
+        if (input.length() == 0) {
             System.out.println(1);
         } else {
             System.out.println(0);
