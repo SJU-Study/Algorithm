@@ -3,16 +3,16 @@ import java.util.*;
 
 public class Main {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static int s, e, q;
+    static String s, e, q;
     static Set<String> before = new HashSet<>();
     static Set<String> after = new HashSet<>();
 
     public static void main(String[] args) throws IOException {
 
         StringTokenizer st = new StringTokenizer(br.readLine());
-        s = Integer.parseInt(st.nextToken().replaceAll("[:]", ""));
-        e = Integer.parseInt(st.nextToken().replaceAll("[:]", ""));
-        q = Integer.parseInt(st.nextToken().replaceAll("[:]", ""));
+        s = st.nextToken().replaceAll("[:]", "");
+        e = st.nextToken().replaceAll("[:]", "");
+        q = st.nextToken().replaceAll("[:]", "");
 
         checkAttendance();
 
@@ -35,11 +35,11 @@ public class Main {
         String chat;
         while ((chat = br.readLine()) != null) {
             st = new StringTokenizer(chat);
-            int time = Integer.parseInt(st.nextToken().replaceAll("[:]", ""));
+            String time = st.nextToken().replaceAll("[:]", "");
             String name = st.nextToken();
-            if (time <= s) {
+            if (time.compareTo(s) <= 0) {
                 before.add(name);
-            } else if (time >= e && time <= q) {
+            } else if (time.compareTo(e) >= 0 && time.compareTo(q) <= 0) {
                 after.add(name);
             }
         }
