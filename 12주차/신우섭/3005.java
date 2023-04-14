@@ -25,38 +25,25 @@ public class Main {
     }
 
     private static String search(int r, int c, char[][] puzzle) {
-        String min = "zzzzzzzzzzzzzzzzzzzz";
+        StringBuilder word = new StringBuilder();
         for (int i = 0; i < r; i++) {
-            String word = "";
             for (int j = 0; j < c; j++) {
-                if (puzzle[i][j] != '#') {
-                    word += String.valueOf(puzzle[i][j]);
-                } else {
-                    min = checkMin(word, min);
-                    word = "";
-                }
+                word.append(puzzle[i][j]);
             }
-            min = checkMin(word, min);
+            word.append("#");
         }
         for (int i = 0; i < c; i++) {
-            String word = "";
             for (int j = 0; j < r; j++) {
-                if (puzzle[j][i] != '#') {
-                    word += String.valueOf(puzzle[j][i]);
-                } else {
-                    min = checkMin(word, min);
-                    word = "";
-                }
+                word.append(puzzle[j][i]);
             }
-            min = checkMin(word, min);
+            word.append("#");
         }
-        return min;
-    }
 
-    private static String checkMin(String word, String min) {
-        if (word.length() >= 2 && word.compareTo(min) < 0) {
-            min = word;
+        String[] words = word.toString().split("#");
+        Arrays.sort(words);
+        for (String str : words) {
+            if (str.length() >= 2) return str;
         }
-        return min;
+        return "";
     }
 }
