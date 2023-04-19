@@ -4,7 +4,7 @@
 
 ---
 
-[12939 - 최솟값 만들기](https://school.programmers.co.kr/learn/courses/30/lessons/12939)
+[12941 - 최솟값 만들기](https://school.programmers.co.kr/learn/courses/30/lessons/12941)
 
 [70129 - 이진 변환 반복하기](https://school.programmers.co.kr/learn/courses/30/lessons/70129)
 
