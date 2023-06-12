@@ -4,7 +4,7 @@ class Solution {
         int answer = 0;
         Arrays.sort(d);
         for(int e : d){
-            if(budget >= e){
+            if(budget >= e){  
                 budget -= e;
                 answer++;
             }
