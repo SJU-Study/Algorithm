@@ -4,7 +4,7 @@ class Solution {
         while(true){
             int newCokes = n / a * b;
             answer += newCokes;
-            n = n % a + newCokes;
+            n = n % a + newCokes; 
             if(n < a){
                 break;
             }
